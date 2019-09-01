@@ -17,11 +17,13 @@ Kake is a dependency manager and task runner for the Kotlin programming language
     "dependencies": [
         "com.fasterxml.jackson.core:jackson-databind:2.9.9.3"
     ],
-    "devDependencies": [
+    "developmentDependencies": [
         "org.junit.jupiter:junit-jupiter-api:5.5.1"
-    ]
+    ],
+    "overridingDependencies": []
 }
 ```
+
 
 # Task Running
 
@@ -29,8 +31,8 @@ kake will come with some standard tasks:
 
 - clean
 - compile
-- package
-- install
+- test
+- run
 
 ```sh
 kake [flags] task1[args...] task2[args...] ...
