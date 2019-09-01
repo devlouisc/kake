@@ -22,7 +22,7 @@ This is the `project.json` file in the top level directory of the project. The J
         "https://jcenter.bintray.com/"
     ],
     "dependencies": [
-        "com.fasterxml.jackson.core:jackson-databind:2.9.9.3"
+        "com.google.code.gson:gson:2.8.5"
     ],
     "developmentDependencies": [
         "org.junit.jupiter:junit-jupiter-api:5.5.1"
@@ -34,4 +34,4 @@ This is the `project.json` file in the top level directory of the project. The J
 
 ## Dependency Resolution
 
-The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 0, their immediate transient dependencies are at level 1, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level depmgmt (declared in the project.json file) are at level 0, their immediate transient depmgmt are at level 1, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.

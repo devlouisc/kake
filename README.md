@@ -3,6 +3,14 @@
 Kake is a dependency manager and task runner for the Kotlin programming language.
 
 
+# To Do
+
+- Parse and validate project.json file
+- Pull down dependencies from the specified repositories
+- Store cached dependencies
+- Perform dependency resolution
+
+
 # Dependency Management
 
 ```json
@@ -15,7 +23,7 @@ Kake is a dependency manager and task runner for the Kotlin programming language
         "https://jcenter.bintray.com/"
     ],
     "dependencies": [
-        "com.fasterxml.jackson.core:jackson-databind:2.9.9.3"
+        "com.google.code.gson:gson:2.8.5"
     ],
     "developmentDependencies": [
         "org.junit.jupiter:junit-jupiter-api:5.5.1"
