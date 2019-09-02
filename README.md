@@ -2,6 +2,8 @@
 
 Kake is a dependency manager and task runner for the Kotlin programming language.
 
+This project is in the proof of concept phase so things will change quickly and the code is only intended to work on my machine, for now.
+
 
 # To Do
 

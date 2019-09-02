@@ -1,4 +1,4 @@
-package depmgmt
+package dev.louisc.kake.depmgmt
 
 data class ProjectJson(
         val groupId: String = "",

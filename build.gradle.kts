@@ -1,4 +1,7 @@
-plugins { id("org.jetbrains.kotlin.jvm") version "1.3.50" }
+plugins {
+    id("com.github.johnrengelman.shadow") version "5.1.0"
+    id("org.jetbrains.kotlin.jvm") version "1.3.50"
+}
 
 group = "dev.louisc"
 version = "0.0.0"
@@ -16,4 +19,6 @@ dependencies {
 
 tasks.compileKotlin { kotlinOptions { jvmTarget = "11" } }
 tasks.compileTestKotlin { kotlinOptions { jvmTarget = "11" } }
-tasks.test{ useJUnitPlatform() }
+tasks.test { useJUnitPlatform() }
+tasks.jar { manifest { attributes("Main-Class" to "dev.louisc.kake.MainKt") } }
+tasks.shadowJar { baseName = "kake"; classifier = null; version = null }
