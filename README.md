@@ -5,7 +5,6 @@ Kake is a dependency manager and task runner for the Kotlin programming language
 
 # To Do
 
-- Parse and validate project.json file
 - Pull down dependencies from the specified repositories
 - Store cached dependencies
 - Perform dependency resolution
