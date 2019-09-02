@@ -1,8 +1,8 @@
 package depmgmt
 
 data class ProjectJson(
-        val group: String,
-        val artifact: String,
+        val groupId: String,
+        val artifactId: String,
         val version: String,
         val dependencies: List<String>?,
         val developmentDependencies: List<String>?,

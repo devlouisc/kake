@@ -16,31 +16,31 @@ class ProjectJsonParserTest {
             // GIVEN a valid project JSON text
             val projectJsonText = """
                 {
-                    "group": "group",
-                    "artifact": "artifact",
+                    "groupId": "groupId",
+                    "artifactId": "artifactId",
                     "version": "1.0.0",
                     "dependencies": [
-                        "dependent-group:dependent-artifact:2.0.0"
+                        "dependent-groupId:dependent-artifactId:2.0.0"
                     ],
                     "developmentDependencies": [
-                        "development-group:development-artifact:3.0.0"
+                        "development-groupId:development-artifactId:3.0.0"
                     ],
                     "overridingDependencies": [
-                        "overriding-group:overriding-artifact:4.0.0"
+                        "overriding-groupId:overriding-artifactId:4.0.0"
                     ]
                 }
-            """
+            """.trimIndent()
 
             // WHEN it is parsed
             val projectJson = ProjectJsonParser.parse(projectJsonText)
 
             // THEN the resultant project JSON object is returned
-            assertThat(projectJson.group).isEqualTo("group")
-            assertThat(projectJson.artifact).isEqualTo("artifact")
+            assertThat(projectJson.groupId).isEqualTo("groupId")
+            assertThat(projectJson.artifactId).isEqualTo("artifactId")
             assertThat(projectJson.version).isEqualTo("1.0.0")
-            assertThat(projectJson.dependencies).isEqualTo(listOf("dependent-group:dependent-artifact:2.0.0"))
-            assertThat(projectJson.developmentDependencies).isEqualTo(listOf("development-group:development-artifact:3.0.0"))
-            assertThat(projectJson.overridingDependencies).isEqualTo(listOf("overriding-group:overriding-artifact:4.0.0"))
+            assertThat(projectJson.dependencies).isEqualTo(listOf("dependent-groupId:dependent-artifactId:2.0.0"))
+            assertThat(projectJson.developmentDependencies).isEqualTo(listOf("development-groupId:development-artifactId:3.0.0"))
+            assertThat(projectJson.overridingDependencies).isEqualTo(listOf("overriding-groupId:overriding-artifactId:4.0.0"))
         }
 
     }
