@@ -34,4 +34,32 @@ This is the `project.json` file in the top level directory of the project. The J
 
 ## Dependency Resolution
 
-The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level depmgmt (declared in the project.json file) are at level 0, their immediate transient depmgmt are at level 1, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level tasks (declared in the project.json file) are at level 0, their immediate transient tasks are at level 1, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.
+
+
+# Task Running
+
+Installing Kake will create a `.kake` directory in the home directory and pull down the necessary dependencies. The package cache will already have the version of Kake installed so that the `Kakefile.kts` can import the standard tasks that Kake provides, i.e. `Kakefile.kts` will have the `dev.louisc.kake` package available to import.
+
+```kotlin
+// Kakefile.kts
+import dev.louisc.kake.parallel
+import dev.louisc.kake.series
+import dev.louisc.kake.TaskManager
+import dev.louisc.kake.tasks.InstallTask
+
+fun task1() = println("task1")
+fun task2() = println("task2")
+fun task3() = println("task3")
+
+val serialTask = series(task1, task2, task3)
+val parallelTask = parallel(task1, task2, task3)
+
+TaskManager.addTasks(
+    task1,
+    task2,
+    task3,
+    serialTask,
+    parallelTask
+).run()
+```
