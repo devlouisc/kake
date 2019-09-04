@@ -4,15 +4,18 @@ typealias TaskLogic = () -> Unit
 
 data class Task(
         val name: String,
-        val logic: TaskLogic,
-        val subtasks: List<Task> = listOf(),
-        val parallel: Boolean = false
+        val logic: TaskLogic
 )
 
-fun series(name: String, vararg tasks: Task): Task {
-    return Task(name, {}, tasks.toList(), false)
+data class TaskSchedule(
+        val tasks: List<Task>,
+        val parallel: Boolean
+)
+
+fun series(vararg tasks: Task): TaskSchedule {
+    return TaskSchedule(tasks.toList(), false)
 }
 
-fun parallel(name: String, vararg tasks: Task): Task {
-    return Task(name, {}, tasks.toList(), true)
+fun parallel(vararg tasks: Task): TaskSchedule {
+    return TaskSchedule(tasks.toList(), true)
 }

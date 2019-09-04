@@ -43,23 +43,18 @@ Installing Kake will create a `.kake` directory in the home directory and pull d
 
 ```kotlin
 // Kakefile.kts
-import dev.louisc.kake.parallel
-import dev.louisc.kake.series
-import dev.louisc.kake.TaskManager
-import dev.louisc.kake.tasks.InstallTask
+import dev.louisc.kake.*
 
-fun task1() = println("task1")
-fun task2() = println("task2")
-fun task3() = println("task3")
+val task1 = Task("task1") { println("task1") }
+val task2 = Task("task2") { println("task2") }
+val task3 = Task("task3") { println("task3") }
 
-val serialTask = series(task1, task2, task3)
-val parallelTask = parallel(task1, task2, task3)
+val seriesTask = Task("seriesTask", series(task1, task2, task3))
+val parallelTask = Task("parallelTask", parallel(task1, task2, task3))
+val complexTask = Task("complexTask", series(task1, parallel(task2, task3)))
 
-TaskManager.addTasks(
-    task1,
-    task2,
-    task3,
-    serialTask,
-    parallelTask
-).run()
+TaskManager.add(task1)
+TaskManager.add(task1, task2, task3)
+
+TaskManager.run("task1")
 ```
