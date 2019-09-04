@@ -1,21 +1,38 @@
 package dev.louisc.kake
 
-typealias TaskLogic = () -> Unit
+abstract class TaskOrSchedule
 
 data class Task(
         val name: String,
-        val logic: TaskLogic
-)
+        val description: String,
+        val schedule: Schedule,
+        val logic: Logic)
+    : TaskOrSchedule() {
 
-data class TaskSchedule(
-        val tasks: List<Task>,
-        val parallel: Boolean
-)
+    constructor(name: String, description: String, schedule: Schedule)
+            : this(name, description, schedule, {})
 
-fun series(vararg tasks: Task): TaskSchedule {
-    return TaskSchedule(tasks.toList(), false)
+    constructor(name: String, description: String, logic: Logic)
+            : this(name, description, Schedule(Strategy.SERIES, listOf()), logic)
+
 }
 
-fun parallel(vararg tasks: Task): TaskSchedule {
-    return TaskSchedule(tasks.toList(), true)
+data class Schedule(
+        val parallel: Strategy,
+        val tasks: List<TaskOrSchedule>)
+    : TaskOrSchedule()
+
+enum class Strategy {
+    SERIES,
+    PARALLEL
+}
+
+typealias Logic = () -> Unit
+
+fun series(vararg tasksOrSchedules: TaskOrSchedule): Schedule {
+    return Schedule(Strategy.SERIES, tasksOrSchedules.toList())
+}
+
+fun parallel(vararg tasksOrSchedules: TaskOrSchedule): Schedule {
+    return Schedule(Strategy.PARALLEL, tasksOrSchedules.toList())
 }

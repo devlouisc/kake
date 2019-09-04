@@ -6,5 +6,4 @@ data class ProjectJson(
         val version: String = "",
         val dependencies: List<String>? = null,
         val developmentDependencies: List<String>? = null,
-        val overridingDependencies: List<String>? = null
-)
+        val overridingDependencies: List<String>? = null)

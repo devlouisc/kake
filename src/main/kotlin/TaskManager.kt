@@ -1,7 +1,5 @@
 package dev.louisc.kake
 
-class TaskNotFoundException(name: String) : Exception(name)
-
 object TaskManager {
 
     private val tasks = mutableMapOf<String, Task>()
@@ -13,9 +11,20 @@ object TaskManager {
         return this
     }
 
+    fun remove(vararg names: String): TaskManager {
+        for (name in names) {
+            tasks.remove(name)
+        }
+        return this
+    }
+
+    fun list(): Set<String> {
+        return tasks.keys
+    }
+
     fun run(vararg names: String): TaskManager {
         for (name in names) {
-            this.tasks[name]?.logic?.invoke()
+            tasks[name]?.logic?.invoke()
         }
         return this
     }

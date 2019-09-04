@@ -45,13 +45,18 @@ Installing Kake will create a `.kake` directory in the home directory and pull d
 // Kakefile.kts
 import dev.louisc.kake.*
 
-val task1 = Task("task1") { println("task1") }
-val task2 = Task("task2") { println("task2") }
-val task3 = Task("task3") { println("task3") }
+val task1 = Task("task1", "description1") { println("task1") }
+val task2 = Task("task2", "") { println("task2") }
+val task3 = Task("task3", "") { println("task3") }
 
-val seriesTask = Task("seriesTask", series(task1, task2, task3))
-val parallelTask = Task("parallelTask", parallel(task1, task2, task3))
-val complexTask = Task("complexTask", series(task1, parallel(task2, task3)))
+val seriesTask = Task("seriesTask", "", {}, series(task1, task2, task3))
+val parallelTask = Task("parallelTask", "", parallel(task1, task2, task3))
+val complexTask = Task("complexTask", "", series(task1, parallel(task2, task3)))
+
+val builderTask = TaskBuilder()
+    .name("builderTask")
+    .logic(series(task1, task2))
+    .build()
 
 TaskManager.add(task1)
 TaskManager.add(task1, task2, task3)
