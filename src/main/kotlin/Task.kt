@@ -5,10 +5,10 @@ abstract class TaskOrSchedule
 data class Task(
     val name: String,
     val description: String,
-    val subtasks: Schedule,
+    val subtasks: TaskOrSchedule,
     val logic: Logic
 ) : TaskOrSchedule() {
-    constructor(name: String, description: String, subtasks: Schedule) :
+    constructor(name: String, description: String, subtasks: TaskOrSchedule) :
         this(name, description, subtasks, {})
 
     constructor(name: String, description: String, logic: Logic) :
@@ -16,8 +16,8 @@ data class Task(
 }
 
 data class Schedule(
-    val parallel: Strategy,
-    val tasks: List<TaskOrSchedule>
+    val strategy: Strategy,
+    val tasksOrSchedules: List<TaskOrSchedule>
 ) : TaskOrSchedule()
 
 enum class Strategy {

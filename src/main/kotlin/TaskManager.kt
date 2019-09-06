@@ -1,7 +1,13 @@
 package dev.louisc.kake
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
 class DuplicateTaskException(message: String) : Exception(message)
 class MissingTaskException(message: String) : Exception(message)
+class NotTaskOrScheduleException(message: String) : Exception(message)
 
 object TaskManager {
     internal val tasks = mutableMapOf<String, Task>()
@@ -19,7 +25,7 @@ object TaskManager {
 
     fun run(name: String) {
         checkMissingTasks(listOf(name))
-        tasks[name]?.logic?.invoke()
+        runTaskOrSchedule(tasks[name]!!)
     }
 
     private fun checkDuplicateTasks(names: List<String>) {
@@ -31,7 +37,7 @@ object TaskManager {
             }
         }
 
-        if (duplicateTasks.size > 0) {
+        if (duplicateTasks.isNotEmpty()) {
             throw DuplicateTaskException("Duplicate task(s): ${duplicateTasks.sorted().joinToString(", ")}")
         }
     }
@@ -43,8 +49,40 @@ object TaskManager {
             tasks[name] ?: missingTasks.add(name)
         }
 
-        if (missingTasks.size > 0) {
+        if (missingTasks.isNotEmpty()) {
             throw MissingTaskException("Missing task(s): ${missingTasks.sorted().joinToString(", ")}")
+        }
+    }
+
+    private fun runTaskOrSchedule(taskOrSchedule: TaskOrSchedule) {
+        when (taskOrSchedule) {
+            is Task -> {
+                val task: Task = taskOrSchedule
+                runTaskOrSchedule(task.subtasks)
+                task.logic()
+            }
+
+            is Schedule -> {
+                val schedule: Schedule = taskOrSchedule
+                if (schedule.tasksOrSchedules.isNotEmpty()) {
+                    when (schedule.strategy) {
+                        Strategy.SERIES -> {
+                            schedule.tasksOrSchedules.forEach { runTaskOrSchedule(it) }
+                        }
+
+                        Strategy.PARALLEL -> {
+                            runBlocking {
+                                schedule.tasksOrSchedules
+                                    .map { GlobalScope.launch { runTaskOrSchedule(it) } }
+                                    .joinAll()
+                            }
+                        }
+                    }
+                }
+            }
+
+            else ->
+                throw NotTaskOrScheduleException("Encountered type that is not Task or Schedule: ${taskOrSchedule::class}")
         }
     }
 }
