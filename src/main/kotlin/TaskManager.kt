@@ -4,10 +4,10 @@ class DuplicateTaskException(message: String) : Exception(message)
 class MissingTaskException(message: String) : Exception(message)
 
 object TaskManager {
-    private val tasks = mutableMapOf<String, Task>()
+    internal val tasks = mutableMapOf<String, Task>()
 
     fun add(vararg tasks: Task) {
-        checkDuplicateTasks(*tasks.map { it.name }.toTypedArray())
+        checkDuplicateTasks(tasks.map { it.name })
         for (task in tasks) {
             this.tasks[task.name] = task
         }
@@ -17,14 +17,12 @@ object TaskManager {
         return tasks.values.toList().sortedBy { it.name }
     }
 
-    fun run(vararg names: String) {
-        checkMissingTasks(*names)
-        for (name in names) {
-            tasks[name]?.logic?.invoke()
-        }
+    fun run(name: String) {
+        checkMissingTasks(listOf(name))
+        tasks[name]?.logic?.invoke()
     }
 
-    private fun checkDuplicateTasks(vararg names: String) {
+    private fun checkDuplicateTasks(names: List<String>) {
         val duplicateTasks = mutableSetOf<String>()
 
         for (name in names) {
@@ -38,7 +36,7 @@ object TaskManager {
         }
     }
 
-    private fun checkMissingTasks(vararg names: String) {
+    private fun checkMissingTasks(names: List<String>) {
         val missingTasks = mutableSetOf<String>()
 
         for (name in names) {
