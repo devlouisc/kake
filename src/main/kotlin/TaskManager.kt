@@ -13,26 +13,6 @@ object TaskManager {
         }
     }
 
-    fun replace(vararg tasks: Task) {
-        checkMissingTasks(*tasks.map { it.name }.toTypedArray())
-        for (task in tasks) {
-            this.tasks[task.name] = task
-        }
-    }
-
-    fun addOrReplace(vararg tasks: Task) {
-        for (task in tasks) {
-            this.tasks[task.name] = task
-        }
-    }
-
-    fun remove(vararg names: String) {
-        checkMissingTasks(*names)
-        for (name in names) {
-            tasks.remove(name)
-        }
-    }
-
     fun list(): List<Task> {
         return tasks.values.toList().sortedBy { it.name }
     }
