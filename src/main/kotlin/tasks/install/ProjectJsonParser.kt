@@ -1,4 +1,4 @@
-package dev.louisc.kake.depmgmt
+package dev.louisc.kake.tasks.install
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonParser
@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 
 object ProjectJsonParser {
-
     private val idRegex = Regex("""[A-Za-z0-9_\-.]+""")
     private val versionRegex = Regex("""\d\.\d\.\d""")
     private val dependencyRegex = Regex("${idRegex.pattern}:${idRegex.pattern}:${versionRegex.pattern}")
@@ -20,12 +19,12 @@ object ProjectJsonParser {
         val indenter = DefaultIndenter(" ".repeat(4), DefaultIndenter.SYS_LF)
 
         objectMapper = ObjectMapper(jsonFactory)
-                .configure(SerializationFeature.INDENT_OUTPUT, true)
-                .setDefaultPrettyPrinter(
-                        DefaultPrettyPrinter()
-                                .withArrayIndenter(indenter)
-                                .withObjectIndenter(indenter)
-                )
+            .configure(SerializationFeature.INDENT_OUTPUT, true)
+            .setDefaultPrettyPrinter(
+                DefaultPrettyPrinter()
+                    .withArrayIndenter(indenter)
+                    .withObjectIndenter(indenter)
+            )
     }
 
     fun parse(projectJsonText: String): ProjectJson {
@@ -55,7 +54,7 @@ object ProjectJsonParser {
         if (projectJson.dependencies != null) {
             for (dependency in projectJson.dependencies) {
                 if (dependencyRegex.matchEntire(dependency) == null) {
-                    validationErrors.add("Dependency '${dependency}' does not match regex pattern '${dependencyRegex.pattern}'.")
+                    validationErrors.add("Dependency '$dependency' does not match regex pattern '${dependencyRegex.pattern}'.")
                 }
             }
         }
@@ -63,7 +62,7 @@ object ProjectJsonParser {
         if (projectJson.developmentDependencies != null) {
             for (dependency in projectJson.developmentDependencies) {
                 if (dependencyRegex.matchEntire(dependency) == null) {
-                    validationErrors.add("Development dependency '${dependency}' does not match regex pattern '${dependencyRegex.pattern}'.")
+                    validationErrors.add("Development dependency '$dependency' does not match regex pattern '${dependencyRegex.pattern}'.")
                 }
             }
         }
@@ -71,7 +70,7 @@ object ProjectJsonParser {
         if (projectJson.overridingDependencies != null) {
             for (dependency in projectJson.overridingDependencies) {
                 if (dependencyRegex.matchEntire(dependency) == null) {
-                    validationErrors.add("Overriding dependency '${dependency}' does not match regex pattern '${dependencyRegex.pattern}'.")
+                    validationErrors.add("Overriding dependency '$dependency' does not match regex pattern '${dependencyRegex.pattern}'.")
                 }
             }
         }
@@ -82,5 +81,4 @@ object ProjectJsonParser {
 
         return projectJson
     }
-
 }

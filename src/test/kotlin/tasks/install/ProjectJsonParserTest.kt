@@ -1,5 +1,6 @@
-package tasks;
+package tasks.install
 
+import dev.louisc.kake.tasks.install.ProjectJsonParser
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -42,7 +43,5 @@ class ProjectJsonParserTest {
             assertThat(projectJson.developmentDependencies).isEqualTo(listOf("development-groupId:development-artifactId:2.0.0"))
             assertThat(projectJson.overridingDependencies).isEqualTo(listOf("overriding-groupId:overriding-artifactId:3.0.0"))
         }
-
     }
-
 }

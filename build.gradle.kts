@@ -1,6 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "5.1.0"
     id("org.jetbrains.kotlin.jvm") version "1.3.50"
+    id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
 }
 
 group = "dev.louisc"

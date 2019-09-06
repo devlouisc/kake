@@ -1,7 +1,6 @@
 package dev.louisc.kake
 
 object TaskManager {
-
     private val tasks = mutableMapOf<String, Task>()
 
     fun add(vararg tasks: Task): TaskManager {
@@ -28,5 +27,4 @@ object TaskManager {
         }
         return this
     }
-
 }
