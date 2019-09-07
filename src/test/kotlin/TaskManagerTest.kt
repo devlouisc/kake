@@ -18,17 +18,14 @@ class TaskManagerTest {
 
         @Test
         fun `should add provided tasks`() {
-
         }
 
         @Test
         fun `should throw an exception if any provided tasks already exist`() {
-
         }
 
         @Test
         fun `should be atomic, either all task are added or no tasks are added`() {
-
         }
     }
 
@@ -37,7 +34,6 @@ class TaskManagerTest {
 
         @Test
         fun `should list all tasks`() {
-
         }
     }
 
@@ -46,17 +42,14 @@ class TaskManagerTest {
 
         @Test
         fun `should run specified task`() {
-
         }
 
         @Test
         fun `should throw an exception if specified task is missing`() {
-
         }
 
         @Test
         fun `should bubble up an exception if specified task throws an exception`() {
-
         }
     }
 }

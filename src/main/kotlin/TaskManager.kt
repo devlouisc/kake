@@ -1,7 +1,5 @@
 package dev.louisc.kake
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -66,17 +64,15 @@ object TaskManager {
                 val schedule: Schedule = taskOrSchedule
                 if (schedule.tasksOrSchedules.isNotEmpty()) {
                     when (schedule.strategy) {
-                        Strategy.SERIES -> {
+                        Strategy.SERIES ->
                             schedule.tasksOrSchedules.forEach { runTaskOrSchedule(it) }
-                        }
 
-                        Strategy.PARALLEL -> {
+                        Strategy.PARALLEL ->
                             runBlocking {
-                                schedule.tasksOrSchedules
-                                    .map { GlobalScope.launch { runTaskOrSchedule(it) } }
-                                    .joinAll()
+                                schedule.tasksOrSchedules.map {
+                                    launch { runTaskOrSchedule(it) }
+                                }
                             }
-                        }
                     }
                 }
             }
