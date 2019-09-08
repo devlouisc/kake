@@ -5,13 +5,6 @@ Kake is a dependency manager and task runner for the Kotlin programming language
 This project is in the proof of concept phase so things will change quickly and the code is only intended to work on my machine, for now.
 
 
-# To Do
-
-- Pull down dependencies from the specified repositories
-- Store cached dependencies
-- Perform dependency resolution
-
-
 # Dependency Management
 
 ```json
@@ -33,6 +26,8 @@ This project is in the proof of concept phase so things will change quickly and 
 }
 ```
 
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level tasks (declared in the project.json file) are at level 0, their immediate transient tasks are at level 1, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.
+
 
 # Task Running
 
@@ -44,7 +39,7 @@ kake will come with some standard tasks:
 - run
 
 ```sh
-kake [flags] task1[args...] task2[args...] ...
+kake [flags] task1 task2 task3 ...
 
     -h --help       Prints this help text
 
@@ -53,14 +48,8 @@ kake [flags] task1[args...] task2[args...] ...
     -v --version    Prints the tool's version and other info
     
     These flags may only be used with tasks:
-    
-        -o --output     File to write the run output to
+
         -q --quiet      Supresses the run's console output
         
-    Ex: kake clean \
-             compile[src,target] \
-             test \
-             package[full=true] \
-             deploy[env=production] \
-             -q -o build.log 
+    Ex: kake --quiet clean compile test package deploy
 ```
