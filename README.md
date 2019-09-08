@@ -36,6 +36,13 @@ The dependency resolution strategy is to take whichever dependency is higher in 
 
 # Task Running
 
+Kake comes with some standard tasks:
+
+- clean
+- compile
+- test
+- run
+
 ```sh
 kake [option...] [command]
 
@@ -54,10 +61,3 @@ kake [option...] [command]
         
     Ex: kake run --quiet clean compile test run
 ```
-
-kake will come with some standard tasks:
-
-- clean
-- compile
-- test
-- run
