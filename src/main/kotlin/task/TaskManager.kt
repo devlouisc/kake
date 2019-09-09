@@ -1,4 +1,4 @@
-package dev.louisc.kake
+package dev.louisc.kake.tasks
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -13,7 +13,7 @@ object TaskManager {
     fun add(vararg tasks: Task) {
         checkDuplicateTasks(tasks.map { it.name })
         for (task in tasks) {
-            this.tasks[task.name] = task
+            TaskManager.tasks[task.name] = task
         }
     }
 

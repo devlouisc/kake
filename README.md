@@ -36,7 +36,7 @@ The dependency resolution strategy is to take whichever dependency is higher in 
 
 # Task Running
 
-Kake comes with some standard tasks:
+Kake comes with some standard task:
 
 - clean
 - compile
@@ -53,9 +53,9 @@ kake [option...] [command]
 
     install                     Installs dependencies listed in the project.json file
 
-    list                        Lists all tasks
+    list                        Lists all task
 
-    run [option...] [task...]   Runs the specified tasks
+    run [option...] [task...]   Runs the specified task
 
         -q --quiet              Supresses the run's console output
         

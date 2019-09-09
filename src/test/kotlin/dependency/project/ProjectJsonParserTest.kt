@@ -1,4 +1,4 @@
-package dev.louisc.kake.project
+package dev.louisc.kake.dependency.project
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested

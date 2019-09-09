@@ -1,4 +1,4 @@
-package dev.louisc.kake.project
+package dev.louisc.kake.dependency.project
 
 data class ProjectJson(
     val groupId: String = "",

@@ -1,4 +1,4 @@
-package dev.louisc.kake
+package dev.louisc.kake.tasks
 
 abstract class TaskOrSchedule
 

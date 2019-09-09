@@ -1,4 +1,4 @@
-package dev.louisc.kake.project
+package dev.louisc.kake.dependency.project
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonParser
