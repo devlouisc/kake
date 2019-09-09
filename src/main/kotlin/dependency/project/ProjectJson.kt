@@ -4,7 +4,7 @@ data class ProjectJson(
     val groupId: String = "",
     val artifactId: String = "",
     val version: String = "",
-    val dependencies: List<String>? = null,
-    val developmentDependencies: List<String>? = null,
-    val overridingDependencies: List<String>? = null
+    val dependencies: Set<String>? = null,
+    val developmentDependencies: Set<String>? = null,
+    val overridingDependencies: Set<String>? = null
 )

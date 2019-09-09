@@ -14,24 +14,30 @@ This project is in the proof of concept phase so things will change quickly and 
     "version": "0.0.0",
     "repositories": [
         "https://repo.maven.apache.org/maven2/",
-        "https://jcenter.bintray.com/"
+        "https://jcenter.bintray.com/",
+        "file://local/repository/"
     ],
-    "dependencies": [
-        "com.fasterxml.jackson.core:jackson-databind:2.9.9.3",
-        "commons-cli:commons-cli:1.4",
-        "org.jetbrains.kotlin:kotlin-stdlib:1.3.50",
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.1"
-    ],
-    "developmentDependencies": [
-        "org.assertj:assertj-core:3.13.2",
-        "org.junit.jupiter:junit-jupiter-api:5.5.1",
-        "org.junit.jupiter:junit-jupiter-engine:5.5.1"
-    ],
-    "overridingDependencies": []
+    "dependencies": {
+        "compile": [
+            "com.fasterxml.jackson.core:jackson-databind:2.9.9.3",
+            "commons-cli:commons-cli:1.4",
+            "org.jetbrains.kotlin:kotlin-stdlib:1.3.50",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.1"
+        ],
+        "test": [
+            "org.assertj:assertj-core:3.13.2",
+            "org.junit.jupiter:junit-jupiter-api:5.5.1",
+            "org.junit.jupiter:junit-jupiter-engine:5.5.1"
+        ],
+        "development": [],
+        "runtime": [],
+        "provided": [],
+        "override": []
+    }
 }
 ```
 
-The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 1, their immediate transient dependencies are at level 2, and so on. The `overrideingDependencies` field may be used to force the use of a particular dependency version if there is a conflict.
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 1, their immediate transient dependencies are at level 2, and so on. The `dependencies.override` field may be used to force the use of a particular dependency version if there is a conflict.
 
 
 # Task Running
@@ -41,7 +47,7 @@ Kake comes with some standard task:
 - clean
 - compile
 - test
-- run
+- start
 
 ```sh
 kake [option...] [command]
