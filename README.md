@@ -12,6 +12,7 @@ This project is in the proof of concept phase so things will change quickly and 
     "group": "dev.louisc",
     "artifact": "kake",
     "version": "0.0.0",
+    "main": "dev.louisc.kake.MainKt",
     "repositories": [
         "https://repo.maven.apache.org/maven2/",
         "https://jcenter.bintray.com/",
@@ -29,9 +30,9 @@ This project is in the proof of concept phase so things will change quickly and 
             "org.junit.jupiter:junit-jupiter-api:5.5.1",
             "org.junit.jupiter:junit-jupiter-engine:5.5.1"
         ],
-        "development": [],
         "runtime": [],
         "provided": [],
+        "task": [],
         "override": []
     }
 }
@@ -48,6 +49,8 @@ Kake comes with some standard task:
 - compile
 - test
 - start
+- package
+- publish
 
 ```sh
 kake [option...] [command]
