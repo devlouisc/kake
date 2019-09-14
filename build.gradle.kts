@@ -12,6 +12,7 @@ repositories { mavenCentral() }
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.9.3")
     implementation("commons-cli:commons-cli:1.4")
+    implementation("org.apache.maven:maven-model:3.6.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.50")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.1")
 

@@ -10,8 +10,8 @@ This project is in the proof of concept phase so things will change quickly and 
 ```json
 // project.json
 {
-    "group": "dev.louisc",
-    "artifact": "kake",
+    "groupId": "dev.louisc",
+    "artifactId": "kake",
     "version": "0.0.0",
     "main": "dev.louisc.kake.MainKt",
     "repositories": [
@@ -22,6 +22,7 @@ This project is in the proof of concept phase so things will change quickly and 
         "compile": [
             "com.fasterxml.jackson.core:jackson-databind:2.9.9.3",
             "commons-cli:commons-cli:1.4",
+            "org.apache.maven:maven-model:3.6.2",
             "org.jetbrains.kotlin:kotlin-stdlib:1.3.50",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.1"
         ],
