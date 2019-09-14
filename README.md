@@ -8,6 +8,7 @@ This project is in the proof of concept phase so things will change quickly and 
 # Dependency Management
 
 ```json
+// project.json
 {
     "group": "dev.louisc",
     "artifact": "kake",
@@ -15,8 +16,7 @@ This project is in the proof of concept phase so things will change quickly and 
     "main": "dev.louisc.kake.MainKt",
     "repositories": [
         "https://repo.maven.apache.org/maven2/",
-        "https://jcenter.bintray.com/",
-        "file://local/repository/"
+        "https://jcenter.bintray.com/"
     ],
     "dependencies": {
         "compile": [
@@ -31,14 +31,13 @@ This project is in the proof of concept phase so things will change quickly and 
             "org.junit.jupiter:junit-jupiter-engine:5.5.1"
         ],
         "runtime": [],
-        "provided": [],
-        "task": [],
-        "override": []
-    }
+        "provided": []
+    },
+    "taskDependencies": []
 }
 ```
 
-The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 1, their immediate transient dependencies are at level 2, and so on. The `dependencies.override` field may be used to force the use of a particular dependency version if there is a conflict.
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 1, their immediate transient dependencies are at level 2, and so on.
 
 
 # Task Running
