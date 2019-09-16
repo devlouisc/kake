@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class ProjectJsonParserTest {
+class ParseProjectJsonTest {
 
     @Nested
-    inner class Parse {
+    inner class ParseProjectJson {
 
         @Test
         fun `should handle valid project JSON text`() {
@@ -45,7 +45,7 @@ class ProjectJsonParserTest {
             """.trimIndent()
 
             // WHEN it is parsed
-            val projectJson = ProjectJsonParser.parse(projectJsonText)
+            val projectJson = parseProjectJson(projectJsonText)
 
             // THEN the resultant project JSON object is returned
             assertThat(projectJson.groupId).isEqualTo("dev.louisc")
