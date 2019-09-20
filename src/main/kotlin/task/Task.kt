@@ -1,19 +1,13 @@
-package dev.louisc.kake.tasks
+package dev.louisc.kake.task
 
 abstract class TaskOrSchedule
 
 data class Task(
     val name: String,
-    val description: String,
-    val subtasks: TaskOrSchedule,
-    val logic: Logic
-) : TaskOrSchedule() {
-    constructor(name: String, description: String, subtasks: TaskOrSchedule) :
-        this(name, description, subtasks, {})
-
-    constructor(name: String, description: String, logic: Logic) :
-        this(name, description, Schedule(Strategy.SERIES, listOf()), logic)
-}
+    val description: String = "",
+    val subtasks: TaskOrSchedule = Schedule(Strategy.SERIES, listOf()),
+    val logic: Logic = {}
+) : TaskOrSchedule()
 
 data class Schedule(
     val strategy: Strategy,

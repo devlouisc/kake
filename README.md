@@ -70,3 +70,28 @@ kake [option...] [command]
         
     Ex: kake run --quiet clean compile test run
 ```
+
+```kotlin
+// Kakefile.kts
+import dev.louisc.kake.task.TaskManager
+import dev.louisc.kake.task.parallel
+import dev.louisc.kake.task.series
+
+val clean = Task("clean") { println("Task 'clean' is running!") }
+
+val lint = Task("lint") { println("Task 'lint' is running!") }
+
+val compile = Task("compile") { println("Task 'compile' is running!") }
+
+val test = Task("test") { println("Task 'test' is running!") }
+
+val build = Task("build", series(clean, lint, compile, test)) { println("Task 'build' is running!") }
+
+TaskManager.add(
+    clean,
+    lint,
+    compile,
+    test,
+    build
+)
+```

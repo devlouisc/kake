@@ -1,4 +1,4 @@
-package dev.louisc.kake.tasks
+package dev.louisc.kake.task
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
