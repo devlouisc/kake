@@ -1,6 +1,5 @@
 package dev.louisc.kake.project
 
-import dev.louisc.kake.NotFoundException
 import dev.louisc.kake.projectJsonFileName
 import java.nio.file.Path
 

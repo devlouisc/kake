@@ -3,10 +3,6 @@ package dev.louisc.kake.task
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class DuplicateTaskException(message: String) : Exception(message)
-class MissingTaskException(message: String) : Exception(message)
-class NotTaskOrScheduleException(message: String) : Exception(message)
-
 object TaskManager {
     internal val tasks = mutableMapOf<String, Task>()
 

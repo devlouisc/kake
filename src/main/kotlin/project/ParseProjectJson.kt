@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.util.DefaultIndenter
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
-import dev.louisc.kake.ValidationException
 
 private val jsonFactory = JsonFactory().enable(JsonParser.Feature.ALLOW_COMMENTS)
 private val indenter = DefaultIndenter(" ".repeat(4), DefaultIndenter.SYS_LF)
