@@ -2,7 +2,8 @@
 
 Kake is a dependency manager and task runner for the Kotlin programming language.
 
-This project is in the proof of concept phase so things will change quickly and the code is only intended to work on my machine, for now.
+This project is in the proof of concept phase so things will change quickly, and the code is only 
+intended to work on my machine for now.
 
 
 # Dependency Management
@@ -38,7 +39,9 @@ This project is in the proof of concept phase so things will change quickly and 
 }
 ```
 
-The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. The top level dependencies (declared in the project.json file) are at level 1, their immediate transient dependencies are at level 2, and so on.
+The dependency resolution strategy is to take whichever dependency is higher in the dependency tree. 
+The top level dependencies (declared in the project.json file) are at level 1, their immediate 
+transient dependencies are at level 2, and so on.
 
 
 # Task Running
