@@ -7,5 +7,5 @@ data class ProjectJson(
     val main: String = "",
     val repositories: Set<String> = emptySet(),
     val dependencies: Map<String, Set<String>> = emptyMap(),
-    val taskDependencies: Set<String> = emptySet()
+    val taskDependencies: Set<String> = emptySet(),
 )
