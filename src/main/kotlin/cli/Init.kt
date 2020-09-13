@@ -5,5 +5,10 @@ import java.io.File
 fun init() {
     val fileInputStream = {}::class.java.getResourceAsStream("/project-init.json")
     val fileOutputStream = File("project.json").outputStream()
-    fileInputStream.copyTo(fileOutputStream)
+
+    fileInputStream.use {
+        fileOutputStream.use {
+            fileInputStream.copyTo(fileOutputStream)
+        }
+    }
 }
