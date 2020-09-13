@@ -1,8 +1,9 @@
 package dev.louisc.kake.dependency
 
+import org.apache.maven.model.Model
+
 data class DependencyNode internal constructor(
-    val groupId: String,
-    val artifactId: String,
-    val version: String,
-    val children: List<DependencyNode> = listOf()
+    val id: DependencyIdentifier,
+    val model: Model,
+    val children: List<DependencyNode> = listOf(),
 )

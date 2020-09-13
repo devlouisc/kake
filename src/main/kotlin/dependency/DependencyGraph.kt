@@ -1,29 +1,18 @@
 package dev.louisc.kake.dependency
 
+import dev.louisc.kake.dependency.maven.MavenModelGetter
 import java.util.stream.Collectors
 
-class DependencyGraph private constructor(_rootNodes: List<DependencyNode>) {
+data class DependencyGraph(val rootNodes: List<DependencyNode>)
 
-    val rootNodes = _rootNodes
+class DependencyGraphFactory(_mavenModelGetter: MavenModelGetter) {
 
-    companion object {
-        private val dependencyStringRegex = Regex.fromLiteral("^([^:]*):([^:]*):([^:]*)$")
+    private val mavenModelGetter = _mavenModelGetter
 
-        fun build(dependencies: List<String>): DependencyGraph {
-            val rootNodes = dependencies.stream()
-                .map {
-                    val matches = dependencyStringRegex.matchEntire(it)
-                    checkNotNull(matches) { "Malformed dependency string: $it." }
-
-                    val groupId = matches.groupValues[0]
-                    val artifactId = matches.groupValues[1]
-                    val version = matches.groupValues[2]
-
-                    DependencyNode(groupId, artifactId, version)
-                }
-                .collect(Collectors.toList())
-
-            return DependencyGraph(rootNodes)
-        }
+    fun make(dependencies: List<DependencyIdentifier>): DependencyGraph {
+        val rootNodes = dependencies.stream()
+            .map { DependencyNode(id = it, model = mavenModelGetter.get(it)) }
+            .collect(Collectors.toList())
+        return DependencyGraph(rootNodes)
     }
 }
