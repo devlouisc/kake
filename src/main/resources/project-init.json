@@ -1,0 +1,14 @@
+{
+  "groupId": "",
+  "artifactId": "",
+  "version": "",
+  "main": "",
+  "repositories": [],
+  "dependencies": {
+    "compile": [],
+    "test": [],
+    "runtime": [],
+    "provided": []
+  },
+  "taskDependencies": []
+}
